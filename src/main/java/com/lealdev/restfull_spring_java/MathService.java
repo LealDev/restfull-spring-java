@@ -14,21 +14,20 @@ public class MathService implements IMathService{
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
     }
 
-
     @Override
     public Double subtraction(String numberOne, String numberTwo) throws Exception {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return convertToDouble(numberOne) - convertToDouble(numberTwo);
     }
 
     @Override
-    public Double Average(String numberOne, String numberTwo) throws Exception {
+    public Double average(String numberOne, String numberTwo) throws Exception {
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2;
     }
 
     @Override
@@ -36,7 +35,7 @@ public class MathService implements IMathService{
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return Math.pow(convertToDouble(numberOne),convertToDouble(numberTwo));
     }
 
     @Override
@@ -44,7 +43,7 @@ public class MathService implements IMathService{
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return convertToDouble(numberOne) * convertToDouble(numberTwo);
     }
 
     @Override
@@ -52,7 +51,7 @@ public class MathService implements IMathService{
         if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return convertToDouble(numberOne) / convertToDouble(numberTwo);
     }
 
     private Double convertToDouble(String strNumber) {

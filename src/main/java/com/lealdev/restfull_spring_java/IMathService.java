@@ -6,7 +6,7 @@ public interface IMathService {
 
     Double subtraction(String numberOne, String numberTwo) throws Exception;
 
-    Double Average(String numberOne, String numberTwo) throws Exception;
+    Double average(String numberOne, String numberTwo) throws Exception;
 
     Double squareRoot(String numberOne, String numberTwo) throws Exception;
 

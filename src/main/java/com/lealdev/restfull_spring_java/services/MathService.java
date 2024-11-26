@@ -11,7 +11,7 @@ public class MathService implements IMathService {
 
     @Override
     public Double sum(String numberOne, String numberTwo) throws Exception {
-        if (!isNumeric(numberOne) || isNumeric(numberTwo)){
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
         return convertToDouble(numberOne) + convertToDouble(numberTwo);
@@ -19,7 +19,7 @@ public class MathService implements IMathService {
 
     @Override
     public Double subtraction(String numberOne, String numberTwo) throws Exception {
-        if (isNumeric(numberOne) || isNumeric(numberTwo)){
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
         return convertToDouble(numberOne) - convertToDouble(numberTwo);
@@ -27,7 +27,7 @@ public class MathService implements IMathService {
 
     @Override
     public Double average(String numberOne, String numberTwo) throws Exception {
-        if (isNumeric(numberOne) || isNumeric(numberTwo)){
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
         return (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2;
@@ -35,7 +35,7 @@ public class MathService implements IMathService {
 
     @Override
     public Double squareRoot(String number) throws Exception {
-        if (isNumeric(number)){
+        if (!isNumeric(number)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
         return Math.sqrt(convertToDouble(number));
@@ -43,7 +43,7 @@ public class MathService implements IMathService {
 
     @Override
     public Double multiplication(String numberOne, String numberTwo) throws Exception {
-        if (isNumeric(numberOne) || isNumeric(numberTwo)){
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
         return convertToDouble(numberOne) * convertToDouble(numberTwo);
@@ -51,11 +51,9 @@ public class MathService implements IMathService {
 
     @Override
     public Double division(String numberOne, String numberTwo) throws Exception {
-        if (isNumeric(numberOne) || isNumeric(numberTwo)){
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo)){
             throw new UnsuportedMathOperationException("Please set a numeric value!");
         }
         return convertToDouble(numberOne) / convertToDouble(numberTwo);
     }
-
-
 }

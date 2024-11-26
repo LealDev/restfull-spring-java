@@ -8,8 +8,6 @@ public interface IMathService {
 
     Double average(String numberOne, String numberTwo) throws Exception;
 
-    Double squareRoot(String numberOne, String numberTwo) throws Exception;
-
     Double squareRoot(String number) throws Exception;
 
     Double multiplication(String numberOne, String numberTwo) throws Exception;

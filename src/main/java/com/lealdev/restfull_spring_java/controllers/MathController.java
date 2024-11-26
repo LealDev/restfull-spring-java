@@ -1,5 +1,6 @@
-package com.lealdev.restfull_spring_java;
+package com.lealdev.restfull_spring_java.controllers;
 
+import com.lealdev.restfull_spring_java.services.interfaces.IMathService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

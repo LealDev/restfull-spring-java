@@ -1,4 +1,4 @@
-package com.lealdev.restfull_spring_java;
+package com.lealdev.restfull_spring_java.services.interfaces;
 
 public interface IMathService {
 

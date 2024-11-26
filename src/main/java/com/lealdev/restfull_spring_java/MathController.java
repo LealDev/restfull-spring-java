@@ -31,10 +31,9 @@ public class MathController {
         return mathService.average(numberOne,numberTwo);
     }
 
-    @RequestMapping(value = "/squareRoot/{numberOne}/{numberTwo}", method = RequestMethod.GET)
-    public Double squareRoot(@PathVariable(value = "numberOne") String numberOne,
-                      @PathVariable(value = "numberTwo") String numberTwo) throws Exception {
-        return mathService.squareRoot(numberOne,numberTwo);
+    @RequestMapping(value = "/squareRoot/{number}", method = RequestMethod.GET)
+    public Double squareRoot(@PathVariable(value = "numberTwo") String number) throws Exception {
+        return mathService.squareRoot(number);
     }
 
     @RequestMapping(value = "/multiplication/{numberOne}/{numberTwo}", method = RequestMethod.GET)

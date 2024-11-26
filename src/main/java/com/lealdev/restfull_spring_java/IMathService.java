@@ -10,6 +10,8 @@ public interface IMathService {
 
     Double squareRoot(String numberOne, String numberTwo) throws Exception;
 
+    Double squareRoot(String number) throws Exception;
+
     Double multiplication(String numberOne, String numberTwo) throws Exception;
 
     Double division(String numberOne, String numberTwo) throws Exception;

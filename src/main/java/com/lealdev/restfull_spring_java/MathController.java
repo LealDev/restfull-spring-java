@@ -32,7 +32,7 @@ public class MathController {
     }
 
     @RequestMapping(value = "/squareRoot/{number}", method = RequestMethod.GET)
-    public Double squareRoot(@PathVariable(value = "numberTwo") String number) throws Exception {
+    public Double squareRoot(@PathVariable(value = "number") String number) throws Exception {
         return mathService.squareRoot(number);
     }
 

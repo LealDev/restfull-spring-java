@@ -9,4 +9,10 @@ public interface IPersonServices {
     List<Person> findAll();
 
     public Person findById(String id);
+
+    Person create(Person person);
+
+    Person update(Person person);
+
+    void delete(String id);
 }

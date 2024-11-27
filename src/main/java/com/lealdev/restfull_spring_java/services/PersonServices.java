@@ -17,7 +17,8 @@ public class PersonServices implements IPersonServices {
 
     @Override
     public List<Person> findAll() {
-      List<Person> persons = new ArrayList<>();
+        logger.info("Finding all people!");
+        List<Person> persons = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
             Person person = mockPerson(i);
             persons.add(person);
@@ -37,8 +38,24 @@ public class PersonServices implements IPersonServices {
         );
     }
 
+    @Override
+    public Person create(Person person){
+        logger.info("Create one person!");
+        return person;
+    }
+
+    @Override
+    public Person update(Person person){
+        logger.info("Update one person!");
+        return person;
+    }
+
+    @Override
+    public void delete(String id){
+        logger.info("Delete one person!");
+    }
+
     private Person mockPerson(int i) {
-        logger.info("Finding all people!");
         return new Person(
                 counter.incrementAndGet(),
                 "Person Name " + i,

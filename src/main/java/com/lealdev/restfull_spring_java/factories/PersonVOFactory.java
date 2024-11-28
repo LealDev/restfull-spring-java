@@ -24,14 +24,6 @@ public class PersonVOFactory {
         );
     }
 
-//    public static List<Person> toBeanLista(List<PersonVO> VOlist ){
-//        List<Person> personList = new ArrayList<>();
-//        VOlist.forEach( vo -> {
-//            personList.add(toBean(vo));
-//        });
-//        return personList;
-//    }
-
     public static List<Person> toBeanList(List<PersonVO> VOlist){
         if (VOlist == null || VOlist.isEmpty()){
             return Collections.emptyList();

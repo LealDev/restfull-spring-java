@@ -3,8 +3,6 @@ package com.lealdev.restfull_spring_java.factories;
 import com.lealdev.restfull_spring_java.models.Person;
 import com.lealdev.restfull_spring_java.models.VO.PersonVO;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,38 +1,24 @@
-package com.lealdev.restfull_spring_java.models;
-
-import jakarta.persistence.*;
+package com.lealdev.restfull_spring_java.models.VO;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Entity
-@Table(name = "person")
-public class Person implements Serializable {
+public class PersonVO implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "first_name", nullable = false, length = 80)
     private String firstName;
-
-    @Column(name = "last_name", nullable = false, length = 80)
     private String lastName;
-
-    @Column(name = "address", length = 100)
     private String address;
-
-    @Column(name = "gender", length = 80)
     private String gender;
 
-    public Person() {
+    public PersonVO() {
     }
 
-    public Person(Long id, String firstName, String lastName, String address, String gender) {
+    public PersonVO(Long id, String firstName, String lastName, String address, String gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -81,10 +67,25 @@ public class Person implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "personVO{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", address='" + address + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return Objects.equals(id, person.id) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(address, person.address) && Objects.equals(gender, person.gender);
+        PersonVO personVO = (PersonVO) o;
+        return Objects.equals(id, personVO.id)
+                && Objects.equals(firstName, personVO.firstName)
+                && Objects.equals(lastName, personVO.lastName)
+                && Objects.equals(address, personVO.address)
+                && Objects.equals(gender, personVO.gender);
     }
 
     @Override

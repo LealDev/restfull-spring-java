@@ -1,10 +1,14 @@
 package com.lealdev.restfull_spring_java.services;
 
+import com.lealdev.restfull_spring_java.exceptions.ResourceNotFoundException;
+import com.lealdev.restfull_spring_java.factories.PersonVOFactory;
 import com.lealdev.restfull_spring_java.models.Person;
+import com.lealdev.restfull_spring_java.models.VO.PersonVO;
+import com.lealdev.restfull_spring_java.repositories.PersonRepository;
 import com.lealdev.restfull_spring_java.services.interfaces.IPersonServices;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
@@ -15,54 +19,45 @@ public class PersonServices implements IPersonServices {
     private final AtomicLong counter = new AtomicLong();
     private final Logger logger = Logger.getLogger(PersonServices.class.getName());
 
+    @Autowired
+    PersonRepository personRepository;
+
     @Override
     public List<Person> findAll() {
         logger.info("Finding all people!");
-        List<Person> persons = new ArrayList<>();
-        for (int i = 0; i < 8; i++) {
-            Person person = mockPerson(i);
-            persons.add(person);
-        }
-        return persons;
+        return personRepository.findAll();
     }
 
     @Override
-    public Person findById(String id) {
+    public Person findById(Long id) {
         logger.info("Finding one person!");
-        return new Person(
-                counter.incrementAndGet(),
-                "Emanuel",
-                "Leal",
-                "Nova Almeida-Serra-Espirito Santo-Brazil",
-                "Male"
-        );
+        return personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
     }
 
     @Override
-    public Person create(Person person){
+    public Person create(PersonVO personVO){
         logger.info("Create one person!");
-        return person;
+        return personRepository.save(PersonVOFactory.toBean(personVO));
     }
 
     @Override
-    public Person update(Person person){
+    public List<Person> createAll(List<PersonVO> personVOList){
+        logger.info("Create one person!");
+        return personRepository.saveAll(PersonVOFactory.toBeanList(personVOList));
+    }
+
+    @Override
+    public Person update(PersonVO personVO){
         logger.info("Update one person!");
-        return person;
+        Person entity = personRepository.findById(personVO.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        PersonVOFactory.updateEntityWithVO(entity, personVO);
+        return personRepository.save(entity);
     }
 
     @Override
-    public void delete(String id){
+    public void delete(Long id){
+        Person entity = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        personRepository.delete(entity);
         logger.info("Delete one person!");
     }
-
-    private Person mockPerson(int i) {
-        return new Person(
-                counter.incrementAndGet(),
-                "Person Name " + i,
-                "Leal " + i,
-                "Some address in Brazil "+i,
-                "Male"
-        );
-    }
-
 }

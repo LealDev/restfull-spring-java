@@ -5,6 +5,7 @@ import com.lealdev.restfull_spring_java.models.VO.PersonVO;
 import com.lealdev.restfull_spring_java.services.interfaces.IPersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,39 +17,38 @@ public class PersonController {
     @Autowired
     private IPersonServices service;
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> findAll(){
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PersonVO> findAll(){
         return service.findAll();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Person findById(@PathVariable(value = "id") Long id){
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public PersonVO findById(@PathVariable(value = "id") Long id){
         return service.findById(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public void delete(@PathVariable(value = "id") Long id){
+    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id){
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
-    @RequestMapping(method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person create(@RequestBody PersonVO personVO){
+    public PersonVO create(@RequestBody PersonVO personVO){
         return service.create(personVO);
     }
 
-    @RequestMapping(value = "/all", method = RequestMethod.POST,
+    @PostMapping(value = "/all",
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<Person> createAll(@RequestBody List<PersonVO> personVOList){
+    public List<PersonVO> createAll(@RequestBody List<PersonVO> personVOList){
         return service.createAll(personVOList);
     }
 
-    @RequestMapping(method = RequestMethod.PUT,
-            produces = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Person update(@RequestBody PersonVO personVO){
+    public PersonVO update(@RequestBody PersonVO personVO){
         return service.update(personVO);
     }
 }

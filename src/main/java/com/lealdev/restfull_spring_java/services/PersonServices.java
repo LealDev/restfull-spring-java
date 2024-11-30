@@ -45,7 +45,7 @@ public class PersonServices implements IPersonServices {
 
     @Override
     public List<PersonVO> createAll(List<PersonVO> personVOList){
-        logger.info("Create one person!");
+        logger.info("Create persons!");
         var entity = DozerMapper.parseListObjects(personVOList, Person.class);
         return DozerMapper.parseListObjects(personRepository.saveAll(entity), PersonVO.class);
     }

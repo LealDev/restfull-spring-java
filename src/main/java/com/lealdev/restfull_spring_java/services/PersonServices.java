@@ -23,31 +23,34 @@ public class PersonServices implements IPersonServices {
     @Autowired
     PersonRepository personRepository;
 
+    @Autowired
+    PersonMapper personMapper;
+
     @Override
     public List<PersonVO> findAll() {
         logger.info("Finding all people!");
-        return PersonMapper.parseListObjects(personRepository.findAll(), PersonVO.class);
+        return personMapper.toVOList(personRepository.findAll());
     }
 
     @Override
     public PersonVO findById(Long id) {
         logger.info("Finding one person!");
         var entity = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-        return PersonMapper.parseObject(entity, PersonVO.class);
+        return personMapper.toVO(entity);
     }
 
     @Override
     public PersonVO create(PersonVO personVO){
         logger.info("Create one person!");
-        var entity = PersonMapper.parseObject(personVO, Person.class);
-        return PersonMapper.parseObject(personRepository.save(entity), PersonVO.class);
+        var entity = personMapper.toBean(personVO);
+        return personMapper.toVO(personRepository.save(entity));
     }
 
     @Override
     public List<PersonVO> createAll(List<PersonVO> personVOList){
         logger.info("Create persons!");
-        var entity = PersonMapper.parseListObjects(personVOList, Person.class);
-        return PersonMapper.parseListObjects(personRepository.saveAll(entity), PersonVO.class);
+        var entity = personMapper.toBeanList(personVOList);
+        return personMapper.toVOList(personRepository.saveAll(entity));
     }
 
     @Override
@@ -55,7 +58,7 @@ public class PersonServices implements IPersonServices {
         logger.info("Update one person!");
         Person entity = personRepository.findById(personVO.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
         PersonVOFactory.updateEntityWithVO(entity, personVO);
-        return PersonMapper.parseObject(personRepository.save(entity), PersonVO.class);
+        return personMapper.toVO(personRepository.save(entity));
     }
 
     @Override

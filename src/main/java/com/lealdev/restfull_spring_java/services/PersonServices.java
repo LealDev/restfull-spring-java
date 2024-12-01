@@ -2,7 +2,7 @@ package com.lealdev.restfull_spring_java.services;
 
 import com.lealdev.restfull_spring_java.exceptions.ResourceNotFoundException;
 import com.lealdev.restfull_spring_java.factories.PersonVOFactory;
-import com.lealdev.restfull_spring_java.mapper.DozerMapper;
+import com.lealdev.restfull_spring_java.mapper.PersonMapper;
 import com.lealdev.restfull_spring_java.models.Person;
 import com.lealdev.restfull_spring_java.models.VO.PersonVO;
 import com.lealdev.restfull_spring_java.repositories.PersonRepository;
@@ -26,28 +26,28 @@ public class PersonServices implements IPersonServices {
     @Override
     public List<PersonVO> findAll() {
         logger.info("Finding all people!");
-        return DozerMapper.parseListObjects(personRepository.findAll(), PersonVO.class);
+        return PersonMapper.parseListObjects(personRepository.findAll(), PersonVO.class);
     }
 
     @Override
     public PersonVO findById(Long id) {
         logger.info("Finding one person!");
         var entity = personRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-        return DozerMapper.parseObject(entity, PersonVO.class);
+        return PersonMapper.parseObject(entity, PersonVO.class);
     }
 
     @Override
     public PersonVO create(PersonVO personVO){
         logger.info("Create one person!");
-        var entity = DozerMapper.parseObject(personVO, Person.class);
-        return DozerMapper.parseObject(personRepository.save(entity), PersonVO.class);
+        var entity = PersonMapper.parseObject(personVO, Person.class);
+        return PersonMapper.parseObject(personRepository.save(entity), PersonVO.class);
     }
 
     @Override
     public List<PersonVO> createAll(List<PersonVO> personVOList){
         logger.info("Create persons!");
-        var entity = DozerMapper.parseListObjects(personVOList, Person.class);
-        return DozerMapper.parseListObjects(personRepository.saveAll(entity), PersonVO.class);
+        var entity = PersonMapper.parseListObjects(personVOList, Person.class);
+        return PersonMapper.parseListObjects(personRepository.saveAll(entity), PersonVO.class);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class PersonServices implements IPersonServices {
         logger.info("Update one person!");
         Person entity = personRepository.findById(personVO.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
         PersonVOFactory.updateEntityWithVO(entity, personVO);
-        return DozerMapper.parseObject(personRepository.save(entity), PersonVO.class);
+        return PersonMapper.parseObject(personRepository.save(entity), PersonVO.class);
     }
 
     @Override

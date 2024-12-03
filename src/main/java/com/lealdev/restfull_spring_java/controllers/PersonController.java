@@ -2,7 +2,6 @@ package com.lealdev.restfull_spring_java.controllers;
 
 import com.lealdev.restfull_spring_java.models.Person;
 import com.lealdev.restfull_spring_java.models.VO.PersonVO;
-import com.lealdev.restfull_spring_java.models.VO.PersonVOV2;
 import com.lealdev.restfull_spring_java.services.interfaces.IPersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -28,11 +27,6 @@ public class PersonController {
         return service.findById(id);
     }
 
-    @GetMapping(value = "/v2/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public PersonVOV2 findByIdV2(@PathVariable(value = "id") Long id){
-        return service.findByIdV2(id);
-    }
-
     @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> delete(@PathVariable(value = "id") Long id){
         service.delete(id);
@@ -43,12 +37,6 @@ public class PersonController {
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public PersonVO create(@RequestBody PersonVO personVO){
         return service.create(personVO);
-    }
-
-    @PostMapping(value = "/v2", produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PersonVOV2 createV2(@RequestBody PersonVOV2 personVO){
-        return service.createV2(personVO);
     }
 
     @PostMapping(value = "/all",

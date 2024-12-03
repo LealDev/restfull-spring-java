@@ -4,6 +4,7 @@ package com.lealdev.restfull_spring_java.mapper;
 import com.lealdev.restfull_spring_java.models.Person;
 import com.lealdev.restfull_spring_java.models.VO.PersonVO;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 

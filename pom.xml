@@ -73,8 +73,8 @@
 				<configuration>
 					<changeLogFile>src/main/resources/changelog/db.changelog-master.yaml</changeLogFile>
 					<url>jdbc:mysql://localhost:3306/restfull_spring_java?useTimezone=true&amp;serverTimezone=UTC</url>
-					<username>****</username>
-					<password>****</password>
+					<username>root</username>
+					<password>Mys3cureP@ssworld</password>
 					<driver>com.mysql.cj.jdbc.Driver</driver>
 				</configuration>
 				<dependencies>

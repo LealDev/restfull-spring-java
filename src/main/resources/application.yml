@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/restfull_spring_java?useTimezone=true&serverTimezone=UTC
-    username: ****
-    password: ****
+    username: root
+    password: Mys3cureP@ssworld
   jpa:
     hibernate:
       ddl-auto: none

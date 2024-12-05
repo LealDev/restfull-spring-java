@@ -1,6 +1,6 @@
 databaseChangeLog:
   - changeSet:
-      id: create person table
+      id: create-person-table
       author: Emanuel leal
       changes:
         - createTable:
@@ -9,6 +9,10 @@ databaseChangeLog:
               - column:
                   name: id
                   type: INT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
               - column:
                   name: first_name
                   type: VARCHAR(255)
@@ -21,7 +25,3 @@ databaseChangeLog:
               - column:
                   name: gender
                   type: VARCHAR(50)
-        - addPrimaryKey:
-            columnNames: id
-            constraintName: person_pk
-            tableName: person

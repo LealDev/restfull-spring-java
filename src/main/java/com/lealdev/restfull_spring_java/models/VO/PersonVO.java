@@ -1,9 +1,12 @@
 package com.lealdev.restfull_spring_java.models.VO;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
+@JsonPropertyOrder({"id", "address",  "firstName", "lastName", "gender"})
 public class PersonVO implements Serializable {
 
     @Serial

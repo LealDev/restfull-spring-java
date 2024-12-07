@@ -17,38 +17,38 @@ public class PersonController {
     @Autowired
     private IPersonServices service;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<PersonVO> findAll(){
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public List<PersonVO> findAll() {
         return service.findAll();
     }
 
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public PersonVO findById(@PathVariable(value = "id") Long id){
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public PersonVO findById(@PathVariable(value = "id") Long id) {
         return service.findById(id);
     }
 
-    @DeleteMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id){
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
-    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+    @PostMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PersonVO create(@RequestBody PersonVO personVO){
+    public PersonVO create(@RequestBody PersonVO personVO) {
         return service.create(personVO);
     }
 
     @PostMapping(value = "/all",
-            produces = MediaType.APPLICATION_JSON_VALUE,
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public List<PersonVO> createAll(@RequestBody List<PersonVO> personVOList){
+    public List<PersonVO> createAll(@RequestBody List<PersonVO> personVOList) {
         return service.createAll(personVOList);
     }
 
-    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public PersonVO update(@RequestBody PersonVO personVO){
+    public PersonVO update(@RequestBody PersonVO personVO) {
         return service.update(personVO);
     }
 }

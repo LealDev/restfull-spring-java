@@ -56,7 +56,7 @@ public class PersonServices implements IPersonServices {
     @Override
     public PersonVO update(PersonVO personVO){
         logger.info("Update one person!");
-        Person entity = personRepository.findById(personVO.getId()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
+        Person entity = personRepository.findById(personVO.getKey()).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
         PersonVOFactory.updateEntityWithVO(entity, personVO);
         return personMapper.toVO(personRepository.save(entity));
     }

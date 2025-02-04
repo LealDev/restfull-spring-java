@@ -14,7 +14,7 @@ public class PersonVOFactory {
             return null;
         }
         return new Person(
-                personVO.getId(),
+                personVO.getKey(),
                 personVO.getFirstName(),
                 personVO.getLastName(),
                 personVO.getAddress(),
